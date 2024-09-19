@@ -1,7 +1,8 @@
-let moms = 0.25;
+let moms = 25;
+let udregnetMoms = moms / 100;
 
 const momsUdregner = (beloeb, moms) => {
-    console.log(beloeb * moms);
+    console.log(beloeb + beloeb * udregnetMoms);
 }
 
-momsUdregner(3000, moms);
+momsUdregner(2000, moms);
