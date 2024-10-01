@@ -1,0 +1,126 @@
+body {
+    height: 100svh;
+    margin: auto;
+    background-color: blueviolet;
+    margin-top: 4vh;
+}
+
+table {
+    border-collapse: separate;
+    border: 2px solid #333;
+    border-radius: 16px 16px;
+    border-spacing: 0;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin: auto;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead,
+tfoot {
+    background-color: rgb(228 240 245);
+}
+
+td {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+}
+
+th,
+td {
+    padding: 24px 64px 24px 32px;
+}
+
+th {
+    background-color: #333;
+    color: whitesmoke;
+    padding: 24px 32px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    text-align: start;
+}
+
+th:first-of-type {
+    border-radius: 14px 0 0 0;
+}
+
+th:last-of-type {
+    border-radius: 0 14px 0 0;
+}
+
+td:last-of-type {
+    text-align: center;
+}
+
+tr:last-of-type {
+    border-radius: 0 0 20px;
+}
+
+tr:last-of-type td:first-of-type {
+    border-radius: 0 0 0 16px;
+    & td:last-of-type {
+        border-radius: 16px;
+    }
+}
+
+tr:last-of-type td:last-of-type {
+    border-radius: 0 0 16px 0;
+}
+
+
+tbody {
+    border-radius: 0 0 16px;
+}
+
+tbody>tr:nth-of-type(odd) {
+    background-color: white;
+}
+
+tbody>tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+tfoot th {
+    text-align: right;
+}
+
+tfoot td {
+    font-weight: bold;
+}
+
+.filter_container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    justify-content: center;
+}
+
+.button {
+    height: 40px;
+    min-width: 120px;
+    width: fit-content;
+    background-color: #333;
+    padding: 8px 16px;
+    color: white;
+    text-align: center;
+    place-content: center;
+    border-radius: 2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+}
+
+.button:hover {
+    background-color: #525252;
+}
+
+.button:active {
+    background-color: #6a6a6a;
+    box-shadow: inset #333 0px 0px 60px -12px;
+
+}
