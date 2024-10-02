@@ -6,22 +6,15 @@ const bc = [{ name: "Hvidevarer", link: "/hvidevarer" },
 const navList = document.getElementById("navList");
 const generateButton = document.getElementById("generateButton");
 
+// Tjekker om der er hul igennem til min JS.
 window.addEventListener("load", debugTime);
 
+// Console.logger virker.
 function debugTime() {
     console.log("Page load");
 }
 
 generateButton.addEventListener("click", showTheCrumbs);
-
-// function showBreadCrumbs(arr) {
-//     console.log("Breadcrumbs everywhere");
-//     arr.forEach((each) => {
-//         navList.innerHTML += `<nav>
-//         <li><a href=${each.link}>${each.name}</a></li><div>/</div>
-//     </nav>`;
-// });
-// }
 
 function showBreadCrumbs(arr) {
     console.log("Breadcrumbs everywhere");
@@ -39,7 +32,6 @@ function showBreadCrumbs(arr) {
         }
     });
 }
-
 
 function showTheCrumbs() {
     console.log("The bread is here");
