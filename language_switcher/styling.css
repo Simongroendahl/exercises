@@ -1,0 +1,30 @@
+
+body {
+    margin: 0;
+}
+
+header, .footer {
+    font-size: 4rem;
+    line-height: 3rem;
+}
+
+.footer {
+    background-color: blueviolet;
+    padding: 1rem 1rem 4rem;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    max-width: 1400px;
+    margin: auto;
+}
+
+
+.header_wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    background-color: blanchedalmond;
+    padding: 4rem 1rem 1rem;
+}
