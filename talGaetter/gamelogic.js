@@ -4,13 +4,18 @@
 const lowerGuessButton = document.getElementById("button_low");
 const higherGuessButton = document.getElementById("button_high");
 const startButton = document.getElementById("button_start");
+const correctAnswer = document.getElementById("button_correct");
 const computerGuess = document.getElementById("yourNumber");
 
 
 //Et tilfældigt nummer generes fra computerens side af.
 let attemptsNum = 0;
 let randomNumber = Math.floor(Math.random() * 100 + 1);
-let newLowGuess = Math.floor(Math.random() * (randomNumber - 1) + 1);
+// let newLowGuess = Math.floor(Math.random() * (randomNumber - 1) + 1);
+// let newHighGuess = Math.floor(Math.random() * (randomNumber + 1) + 1);
+
+let newLowGuess = randomNumber;
+let newHighGuess = randomNumber;
 
 
 
@@ -28,6 +33,7 @@ startGame();
 function randomNumberStart() {
     console.log("Game start!");
     computerGuess.textContent = `${randomNumber}`;
+    higherOrLower();
 }
 
 
@@ -48,29 +54,29 @@ function guessLower() {
     //console.log(attemptsNum);
 }
 
-//Gæt laver igen
-
 const evenLowerGuess = () => {
     console.log("Going lower, lower, lower");
-    let lowerGuess = Math.floor(Math.random() * (newLowGuess - 1) + 1);
-    computerGuess.textContent = `${lowerGuess}`;
+    const lowerGuess = Math.floor(Math.random() * (newLowGuess - 1)) + 1;
+    newLowGuess = lowerGuess;
+    computerGuess.textContent = `${newLowGuess}`;
 }
-
-
 
 const guessHigher = () => {
     console.log("Maybe something a little higher?");
     attemptsNum++;
-    //console.log(attemptsNum);
 
+    computerGuess.textContent = `${newHighGuess}`;
+    higherGuessButton.removeEventListener("mousedown", guessHigher);
+    higherGuessButton.addEventListener("mousedown", evenHigherGuess);
+}
+
+const evenHigherGuess = () => {
+    console.log("Gætter den nu også højere?");
+    const higherGuess = Math.min(Math.floor(Math.random() * (100 - newHighGuess)) + newHighGuess + 1, 100);
+    newHighGuess = higherGuess;
+    computerGuess.textContent = `${newHighGuess}`;
 }
 
 higherOrLower();
 
-//Den prøver igen med et lavere gæt
 
-//Den prøver igen med et højere gæt
-
-//Tillykke, du gættede rigtigt.
-
-// prøv igen
