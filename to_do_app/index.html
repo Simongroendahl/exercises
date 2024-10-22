@@ -12,15 +12,15 @@
 
 <body>
     <div class="content_wrapper">
-        <aside>
+        <aside data-theme="" id="asideBar">
             <h2>Your lists:</h2>
             <div class="sidebarButtonContainer">
-                <button class="button_hover_ani">Grocery List</button>
-                <button class="button_hover_ani">To Do List</button>
+                <button class="button_hover_ani" value="yellow" id="groceryButton">Grocery List</button>
+                <button class="button_hover_ani" value="purple" id="toDoButton">To Do List</button>
                 <button class="button_hover_ani">+</button>
             </div>
         </aside>
-        <div class="todo_wrapper">
+        <div data-theme="" class="todo_wrapper" id="contentContainer">
             <div class="top_wrapper">
                 <h1>Hey, Username!</h1>
                 <div>

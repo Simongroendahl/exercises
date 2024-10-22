@@ -4,6 +4,8 @@
     --white-color: #fff;
     --accent-color: #FFF96F;
     --lightblue-color: #B9D0FF;
+    --purple-color: #A56DEE;
+    --red-color: #F25F5C;
 
     /* Styling */
     --border-radius: 8px;
@@ -26,6 +28,16 @@
     --space-m: clamp(1.5rem, 1.4625rem + 0.1875vw, 1.6875rem);
     --space-l: clamp(2rem, 1.95rem + 0.25vw, 2.25rem);
     --space-xl: clamp(3rem, 2.925rem + 0.375vw, 3.375rem);
+}
+
+[data-theme="yellow-theme"] {
+    --aside-bg-col: #B9D0FF;
+    --content-bg-col: #FFF96F;
+}
+
+[data-theme="purple-theme"]{
+    --aside-bg-col: var(--red-color);
+    --content-bg-col: var(--purple-color);
 }
 
 * {
@@ -311,7 +323,7 @@ ul li.checked {
 }
 
 aside {
-    background-color: var(--lightblue-color);
+    background-color: var(--aside-bg-col);
     z-index: 1;
     padding: 1rem;
     border-right: 2px solid var(--black-color);
@@ -327,7 +339,7 @@ aside {
 }
 
 .todo_wrapper {
-    background-color: var(--accent-color);
+    background-color: var(--content-bg-col);
     z-index: 1;
     padding: 2rem;
 }
