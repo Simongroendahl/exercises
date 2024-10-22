@@ -60,7 +60,7 @@ ul {
     padding: 0;
 }
 
-li {
+li, .row {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
@@ -68,6 +68,7 @@ li {
     background-color: #f7f7f7;
     padding: 8px;
     border-radius: 5px;
+    font-size: var(--step-0);
 }
 
 ul li {
@@ -75,9 +76,10 @@ ul li {
     user-select: none;
     position: relative;
     padding-left: 50px;
+    padding-right: 24px;
 }
 
-ul li::before {
+ul li::before, .pending_icon::before {
     content: '';
     position: absolute;
     height: 32px;
@@ -91,6 +93,11 @@ ul li::before {
 
 ul li.checked::before {
     background-image: url(icons/checked_box.svg);
+}
+
+.pending_icon::before {
+    background-image: url(icons/pending_checkbox.svg);
+    left: 24px;
 }
 
 ul li span {
@@ -110,9 +117,16 @@ input {
   border:none;
   flex: 1;
   background: transparent;
-  padding: 8px;
+  padding: 8px 8px 8px 28px;
   font-size: var(--step-0);
+  caret-color: var(--black-color);
 }
+
+#input_quantity {
+    transition: ease-in-out 5s all;
+}
+
+
 
 button {
     font-size: 20px;
@@ -124,7 +138,19 @@ button {
     padding: 8px 16px;
     max-width: 200px;
     position: relative;
+}
 
+#addButton {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+#addButton:hover {
+    background-color: #2b2b2b;
+}
+
+#addButton:focus {
+    background-color:  #656565;
 }
 
 button::before {
@@ -153,7 +179,6 @@ button:hover {
     cursor: pointer;
 }
 
-/* Customize the label (the container) */
 .checkbox_container {
     display: block;
     position: relative;
@@ -167,7 +192,6 @@ button:hover {
     user-select: none;
   }
 
-  /* Hide the browser's default checkbox */
   .checkbox_container input {
     position: absolute;
     border-radius: 8px;
@@ -179,7 +203,6 @@ button:hover {
 
   }
 
-  /* Create a custom checkbox */
   .checkmark {
     position: absolute;
     top: 0;
@@ -191,30 +214,25 @@ button:hover {
     border-radius: var(--border-radius);
   }
 
-  /* On mouse-over, add a grey background color */
   .checkbox_container:hover input ~ .checkmark {
     background-color: #ccc;
   }
 
-  /* When the checkbox is checked, add a blue background */
   .checkbox_container input:checked ~ .checkmark {
     background-color: var(--black-color);
     border-radius: var(--border-radius);
   }
 
-  /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
 
-  /* Show the checkmark when checked */
   .checkbox_container input:checked ~ .checkmark:after {
     display: block;
   }
 
-  /* Style the checkmark/indicator */
   .checkbox_container .checkmark:after {
     left: 9px;
     top: 5px;
@@ -225,7 +243,6 @@ button:hover {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-
   }
 
 .row {
@@ -267,6 +284,10 @@ ul li.checked {
 }
 .taskLine:hover {
     cursor: text;
+}
+
+.hide {
+    display: none;
 }
 
 .top_wrapper {
