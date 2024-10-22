@@ -47,8 +47,12 @@ body {
 
 
 
-h1 {
-    color: #333;
+h1, h2, h3, h4, p {
+    color: var(--black-color);
+}
+
+h2 {
+    font-size: var(--step-2);
 }
 
 ul {
@@ -66,12 +70,48 @@ li {
     border-radius: 5px;
 }
 
+ul li {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-left: 50px;
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    border-radius: var(--border-radius);
+    background-image: url(icons/checkbox.svg);
+    background-size: cover;
+    background-position: center;
+    left: 8px;
+}
+
+ul li.checked::before {
+    background-image: url(icons/checked_box.svg);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    font-size: var(--step-2);
+    color: var(--black-color);
+    text-align: center;
+    border-radius: var(--border-radius);
+}
+
 input {
     outline: none;
   border:none;
   flex: 1;
   background: transparent;
   padding: 8px;
+  font-size: var(--step-0);
 }
 
 button {
@@ -192,12 +232,29 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: var(--space-s);
 }
 
 
 ul li.checked {
     color: #555;
     text-decoration: line-through;
+}
+
+.divider_line {
+    height: 3px;
+    background: var(--black-color);
+    width: 100%;
+    margin-bottom: var(--space-s);
+    margin-top: var(--space-s);
+}
+
+.row_divider_line {
+    height: 3px;
+    background: var(--black-color);
+    margin-left: 50px;
+    margin-bottom: var(--space-s);
+    margin-top: var(--space-s);
 }
 
 .deleteTask {
@@ -216,6 +273,7 @@ ul li.checked {
     display: flex;
     flex-direction: column;
     padding: 2rem 0;
+    gap: .5rem;
 
     & h1 {
         font-size: var(--step-4);
@@ -261,6 +319,10 @@ aside {
     border: 2px solid var(--black-color);
     border-radius: var(--border-radius);
     position: relative;
+
+    & h2 {
+        margin-bottom: var(--space-s);
+    }
 }
 
 .container::before {
