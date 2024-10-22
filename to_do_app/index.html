@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+    <script src="dateandtime.js" defer></script>
+</head>
+
+<body>
+    <div class="content_wrapper">
+        <aside>
+            <h2>Your lists:</h2>
+            <div class="sidebarButtonContainer">
+                <button class="button_hover_ani">Grocery List</button>
+                <button class="button_hover_ani">To Do List</button>
+                <button class="button_hover_ani">+</button>
+            </div>
+        </aside>
+        <div class="todo_wrapper">
+            <div class="top_wrapper">
+                <h1>Hey, Username!</h1>
+                <div>
+                    <p id="dato">Oct 15 2024</p>
+                    <p id="klokkeslaet">14:02pm</p>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Grocery List</h2>
+
+                <label class="checkbox_container">Add task
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <div id="row">
+                    <input type="text" id="taskInput" placeholder="Add task">
+                    <input type="number" id="taskInputQuantity" placeholder="Choose amount">
+                </div>
+                <button id="addTask">Add</button>
+
+                <ul id="taskList">
+                    <li class="checked">Hej</li>
+                    <li>med dig</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
