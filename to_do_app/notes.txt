@@ -8,3 +8,4 @@ Så man kan skifte mellem to-do og indkøbslisten.
 1. Lav rowContainersne i completed containeren sletbare.
 
 2. Lave farve switch med "data-theme" på containersne.
+3. Opdatér aside knappernes farve, så de viser status om hvilken liste man er på.

@@ -133,6 +133,10 @@ function visData() {
 visData();
 removeOrphanRowDividers();
 
+
+
+
+
 // FARVE UPDATE
 
 
@@ -142,9 +146,6 @@ const groceryButton = document.getElementById("groceryButton");
 const toDoButton = document.getElementById("toDoButton");
 
 window.addEventListener("load", defaultMode);
-
-// Denne funktion startes når dropdown menuens værdi ændres og kigger derefter options value.
-// Her kigger farveUpdater-funktionen efter værdien, som ændre bodyColor variablens attributes.
 
 function farveUpdater(farve) {
     if (farve === "yellow") {

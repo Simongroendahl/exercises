@@ -4,7 +4,7 @@
     --white-color: #fff;
     --accent-color: #FFF96F;
     --lightblue-color: #B9D0FF;
-    --purple-color: #A56DEE;
+    --purple-color: #B07FF0;
     --red-color: #F25F5C;
 
     /* Styling */
@@ -325,8 +325,12 @@ ul li.checked {
 aside {
     background-color: var(--aside-bg-col);
     z-index: 1;
-    padding: 1rem;
+    padding: 4rem 2rem;
     border-right: 2px solid var(--black-color);
+
+    & h2 {
+        margin-bottom: 1rem;
+    }
 }
 
 .content_wrapper {
