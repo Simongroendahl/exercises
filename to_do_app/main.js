@@ -1,4 +1,3 @@
-
 // Definerer variabler
 const inputBox = document.getElementById("input_box");
 const quantityBox = document.getElementById("input_quantity");
@@ -12,18 +11,19 @@ const contentBg = document.getElementById("contentContainer");
 const groceryButton = document.getElementById("groceryButton");
 const toDoButton = document.getElementById("toDoButton");
 
-//Opsætning af eventlisteners
+// Opsætning af eventlisteners
 addButton.addEventListener("click", addTask);
 inputBox.addEventListener("click", expandOptions);
+groceryButton.addEventListener("click", () => listSwitcher('yellow'));
+toDoButton.addEventListener("click", () => listSwitcher('purple'));
 
 function expandOptions() {
     quantityBox.classList.remove("hide");
-    quantityBox.classList.add("slide_left_ani")
+    quantityBox.classList.add("slide_left_ani");
 }
 
 function addTask() {
     console.log("Add Task is running");
-    //Browseren advarer her brugeren om, hvis de prøver at tilføje en task uden tekst.
     if (inputBox.value === '') {
         alert("No text was added. Try again");
     } else {
@@ -43,8 +43,6 @@ function addTask() {
         let rowDivider = document.createElement("div");
         rowDivider.classList.add("row_divider_line");
 
-        //Her appender den nylavede rowContainer DIV list-elementet og rowDivider DIV-elementet.
-        //og sætter dens data-checked som "false".
         rowContainer.appendChild(li);
         rowContainer.appendChild(rowDivider);
         rowContainer.setAttribute("data-checked", "false");
@@ -52,174 +50,132 @@ function addTask() {
 
         listContainer.appendChild(rowContainer);
 
-        //Fjerner animationen efter 1 sekund, så den ved reload af browser ikke starter på ny.
         setTimeout(() => {
             rowContainer.classList.remove("added_to_list");
-            gemData();
-        }, "1000");
-
-        gemData();
+            gemData(listContainer.getAttribute("data-filter"));
+        }, 1000);
     }
+    gemData(listContainer.getAttribute("data-filter"));
     inputBox.value = "";
     quantityBox.value = "";
     quantityBox.classList.add("hide");
 }
 
-listContainer.addEventListener("blur", function(event) {
-    // Dataen gemmes når brugeren er færdig med at indtaste information
-    // og add-knappen er ude af fokus.
-    if (event.target.tagName === "LI") {
-        gemData();
-    }
-}, true);
-
+// Eventlistener der tjekker om checkboxne er krydset af eller slettes.
 listContainer.addEventListener("click", function (event) {
-    console.log("Checkboxes will be checked off");
-
     if (event.target.tagName === "LI") {
-        const rowContainer = event.target.parentElement; // Get the rowContainer
-
+        const rowContainer = event.target.parentElement;
         if (rowContainer) {
             if (event.target.classList.contains("checked")) {
-                // Uncheck the task
                 event.target.classList.remove("checked");
                 rowContainer.setAttribute("data-checked", "false");
-                listContainer.appendChild(rowContainer); // Move back to listContainer
+                listContainer.appendChild(rowContainer);
             } else {
-                // Check the task
                 event.target.classList.add("checked");
                 rowContainer.setAttribute("data-checked", "true");
-                completedListContainer.appendChild(rowContainer); // Move to completedListContainer
+                completedListContainer.appendChild(rowContainer);
             }
-
-            gemData();
+            gemData(listContainer.getAttribute("data-filter"));
         }
     } else if (event.target.tagName === "SPAN") {
         event.target.parentElement.parentElement.remove();
-        gemData();
-    }
-}, false);
-
-// Add an event listener to the completedListContainer to allow moving items back
-completedListContainer.addEventListener("click", function (event) {
-    if (event.target.tagName === "LI") {
-        const rowContainer = event.target.parentElement; // Get the rowContainer
-
-        if (rowContainer) {
-            event.target.classList.remove("checked");
-            rowContainer.setAttribute("data-checked", "false");
-            listContainer.appendChild(rowContainer); // Move back to listContainer
-            gemData();
-        }
-    } else if (event.target.tagName === "SPAN") {
-        event.target.parentElement.parentElement.remove();
-        gemData();
+        gemData(listContainer.getAttribute("data-filter"));
     }
 });
 
-function removeOrphanRowDividers() {
-    const children = listContainer.children;
-    for (let i = 0; i < children.length; i++) {
-        const child = children[i];
-        if (child.classList.contains("row_divider_line")) {
-            const parentDiv = child.parentElement;
-            if (!parentDiv.parentElement ||
-                parentDiv.parentElement.tagName !== "LI") {
-                parentDiv.remove();
-                i--;
-            }
+completedListContainer.addEventListener("click", function (event) {
+    if (event.target.tagName === "LI") {
+        const rowContainer = event.target.parentElement;
+        if (rowContainer) {
+            event.target.classList.remove("checked");
+            rowContainer.setAttribute("data-checked", "false");
+            listContainer.appendChild(rowContainer);
+            gemData(listContainer.getAttribute("data-filter"));
+        }
+    } else if (event.target.tagName === "SPAN") {
+        event.target.parentElement.parentElement.remove();
+        gemData(listContainer.getAttribute("data-filter"));
+    }
+});
+
+// Save data to localStorage
+function gemData(filter) {
+    if (filter === "grocery-list") {
+        console.log("grocery save");
+        const listData = listContainer.innerHTML;
+        const completedData = completedListContainer.innerHTML;
+        localStorage.setItem("listData", listData);
+        localStorage.setItem("completedData", completedData);
+    } else if (filter === "to-do-list") {
+        console.log("to do save");
+        const toDoData = listContainer.innerHTML;
+        const toDoCompleteData = completedListContainer.innerHTML;
+        localStorage.setItem("toDoData", toDoData);
+        localStorage.setItem("toDoCompleteData", toDoCompleteData);
+    }
+}
+
+// Display data from localStorage
+function visData(visFilter) {
+    if (visFilter === "grocery-list") {
+        const storedListData = localStorage.getItem("listData");
+        const storedCompletedData = localStorage.getItem("completedData");
+        if (storedListData) {
+            listContainer.innerHTML = storedListData;
+        }
+        if (storedCompletedData) {
+            completedListContainer.innerHTML = storedCompletedData;
+        }
+    } else if (visFilter === "to-do-list") {
+        const storedToDoData = localStorage.getItem("toDoData");
+        const storedToDoCompleteData = localStorage.getItem("toDoCompleteData");
+        if (storedToDoData) {
+            listContainer.innerHTML = storedToDoData;
+        }
+        if (storedToDoCompleteData) {
+            completedListContainer.innerHTML = storedToDoCompleteData;
         }
     }
 }
 
-
-
-function gemData() {
-    const listData = listContainer.innerHTML;
-    const completedData = completedListContainer.innerHTML;
-    const toDoListData = listContainer.innerHTML;
-
-    localStorage.setItem("listData", listData);
-    localStorage.setItem("completedData", completedData);
-    localStorage.setItem("toDoListData", toDoListData);
-}
-
-// gemData remake
-
-
-
-function visData() {
-    const storedListData = localStorage.getItem("listData");
-    const storedCompletedData = localStorage.getItem("completedData");
-    const storedToDoData = localStorage.getItem("toDoListData")
-
-    if (storedListData) {
-        listContainer.innerHTML = storedListData;
-    }
-    if (storedCompletedData) {
-        completedListContainer.innerHTML = storedCompletedData;
-    }
-    if (storedToDoData) {
-        listContainer.innerHTML = storedToDoData;
+// List switcher function
+function listSwitcher(category) {
+    if (category === 'yellow') {
+        farveUpdater('yellow');
+        visData("grocery-list");
+    } else if (category === 'purple') {
+        farveUpdater('purple');
+        visData("to-do-list");
     }
 }
 
-// groceryButton.addEventListener("click", listSwitcher);
-// toDoButton.addEventListener("click", listSwitcher);
-
-// //LIST SWITCHER FORSØG
-// function listSwitcher(category) {
-//     if (category === 'yellow') {
-
-//     } else if (category === 'purple') {
-
-//     }
-// }
-
-visData();
-removeOrphanRowDividers();
-
-
-
-
-
-// FARVE UPDATE
-
-
-
-
-window.addEventListener("load", defaultMode);
-
+// Function to update the color theme
 function farveUpdater(farve) {
     if (farve === "yellow") {
         asideMenu.setAttribute("data-theme", "yellow-theme");
         contentBg.setAttribute("data-theme", "yellow-theme");
-        listContainer.setAttribute("data-filter", "grocery-list")
-        completedListContainer.setAttribute("data-filter", "grocery-list-complete")
+        listContainer.setAttribute("data-filter", "grocery-list");
+        completedListContainer.setAttribute("data-filter", "grocery-list-complete");
         listTitle.innerHTML = "Grocery List";
     } else if (farve === "purple") {
         asideMenu.setAttribute("data-theme", "purple-theme");
         contentBg.setAttribute("data-theme", "purple-theme");
-        listContainer.setAttribute("data-filter", "to-do-list")
-        completedListContainer.setAttribute("data-filter", "to-do-list-complete")
+        listContainer.setAttribute("data-filter", "to-do-list");
+        completedListContainer.setAttribute("data-filter", "to-do-list-complete");
         listTitle.innerHTML = "To Do List";
-};}
+    }
+}
 
-toDoButton.addEventListener("click", (nyFarve) => {
-    farveUpdater(nyFarve.target.value);
+// Load data on page load
+window.addEventListener("load", () => {
+    defaultMode();
+    visData(listContainer.getAttribute("data-filter"));
 });
 
-groceryButton.addEventListener("click", (nyFarve) => {
-    farveUpdater(nyFarve.target.value);
-});
-
-
-
+// Set default mode
 function defaultMode() {
     asideMenu.setAttribute("data-theme", "yellow-theme");
     contentBg.setAttribute("data-theme", "yellow-theme");
-};
-
-
-
-
+    listContainer.setAttribute("data-filter", "grocery-list");
+        completedListContainer.setAttribute("data-filter", "grocery-list-complete");
+}

@@ -14,4 +14,4 @@ Så man kan skifte mellem to-do og indkøbslisten.
 
 4. Skift fra brug af pseudo-elements til SVG'er for bedre kontrol af hover effekt.
 
-5. Gør det muligt at skifte mellem forskellige localStorages.
+5. Gør det muligt at skifte mellem forskellige localStorages. (DONE)

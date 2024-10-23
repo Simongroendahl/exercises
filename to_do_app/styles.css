@@ -6,6 +6,7 @@
     --lightblue-color: #B9D0FF;
     --purple-color: #B07FF0;
     --red-color: #F25F5C;
+    --aside-btn-hover: #e4e4e4;
 
     /* Styling */
     --border-radius: 8px;
@@ -57,6 +58,11 @@ body {
     margin: auto;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
 h1, h2, h3, h4, p {
     color: var(--black-color);
 }
@@ -75,7 +81,7 @@ li, .row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f7f7f7;
+    background-color: var(--white-color);
     padding: 8px;
     border-radius: 5px;
     font-size: var(--step-0);
@@ -163,10 +169,11 @@ button {
     color: var(--white-color);
 }
 
+/* FIX THIS */
 #addButton:hover {
     background-color: #2b2b2b;
 }
-
+/* FIX THIS */
 #addButton:focus {
     background-color:  #656565;
 }
@@ -197,8 +204,20 @@ button:hover {
     cursor: pointer;
 }
 
+.buttonIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebarButtonContainer button{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+}
+
 .sidebarButtonContainer button:hover {
-    background-color: #e4e4e4;
+    background-color: var(--aside-btn-hover);
 }
 
 .checkbox_container {
@@ -222,7 +241,6 @@ button:hover {
     cursor: pointer;
     height: 0;
     width: 0;
-
   }
 
   .checkmark {
@@ -338,8 +356,32 @@ aside {
     padding: 4rem 2rem;
     border-right: 2px solid var(--black-color);
 
-    & h2 {
+    & > h2 {
         margin-bottom: 1rem;
+    }
+
+    & .profile_img {
+        background-image: url(icons/test_img.jpg);
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 250px;
+        max-height: 100%;
+        border: 2px solid var(--black-color);
+        background-color: var(--white-color);
+        position: relative;
+        margin-bottom: var(--space-s);
+        border-radius: var(--border-radius);
+    } & .profile_img::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: -6px;
+        left: 6px;
+        z-index: -1;
+        border-radius: var(--border-radius);
+        background-color: var(--black-color);
     }
 }
 
