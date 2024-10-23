@@ -159,9 +159,11 @@ function listSwitcher(category) {
     if (category === 'yellow') {
         farveUpdater('yellow');
         visData("grocery-list");
+        taskCountUpdater();
     } else if (category === 'purple') {
         farveUpdater('purple');
         visData("to-do-list");
+        taskCountUpdater();
     }
 }
 
@@ -189,19 +191,6 @@ window.addEventListener("load", () => {
     visData(listContainer.getAttribute("data-filter"));
     taskCountUpdater();
 });
-
-
-// function taskCounter() {
-//     //Task tæller test
-//     const taskAmount = document.querySelectorAll(".rowContainer");
-//     const taskCounter = taskAmount.length;
-//     console.log(taskCounter);
-// }
-
-// Denne tæller nu, men tæller forkert.
-// let taskRows = listContainer;
-//     let taskCount = taskRows.getElementsByTagName('div').length;
-//     console.log(taskCount);
 
 // Set default mode
 function defaultMode() {
