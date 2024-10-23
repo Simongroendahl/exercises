@@ -43,10 +43,10 @@ function addTask() {
         let rowDivider = document.createElement("div");
         rowDivider.classList.add("row_divider_line");
 
-        rowContainer.appendChild(li);
-        rowContainer.appendChild(rowDivider);
+        rowContainer.append(li, rowDivider);
         rowContainer.setAttribute("data-checked", "false");
         rowContainer.classList.add("added_to_list");
+        rowContainer.classList.add("rowContainer");
 
         listContainer.appendChild(rowContainer);
 
@@ -58,6 +58,7 @@ function addTask() {
     gemData(listContainer.getAttribute("data-filter"));
     inputBox.value = "";
     quantityBox.value = "";
+
     quantityBox.classList.add("hide");
 }
 
@@ -151,6 +152,7 @@ function listSwitcher(category) {
 
 // Function to update the color theme
 function farveUpdater(farve) {
+
     if (farve === "yellow") {
         asideMenu.setAttribute("data-theme", "yellow-theme");
         contentBg.setAttribute("data-theme", "yellow-theme");
@@ -172,10 +174,24 @@ window.addEventListener("load", () => {
     visData(listContainer.getAttribute("data-filter"));
 });
 
+
+// function taskCounter() {
+//     //Task tæller test
+//     const taskAmount = document.querySelectorAll(".rowContainer");
+//     const taskCounter = taskAmount.length;
+//     console.log(taskCounter);
+// }
+
+// Denne tæller nu, men tæller forkert.
+// let taskRows = listContainer;
+//     let taskCount = taskRows.getElementsByTagName('div').length;
+//     console.log(taskCount);
+
 // Set default mode
 function defaultMode() {
     asideMenu.setAttribute("data-theme", "yellow-theme");
     contentBg.setAttribute("data-theme", "yellow-theme");
     listContainer.setAttribute("data-filter", "grocery-list");
-        completedListContainer.setAttribute("data-filter", "grocery-list-complete");
+    completedListContainer.setAttribute("data-filter", "grocery-list-complete");
+
 }

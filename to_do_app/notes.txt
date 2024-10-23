@@ -15,3 +15,5 @@ Så man kan skifte mellem to-do og indkøbslisten.
 4. Skift fra brug af pseudo-elements til SVG'er for bedre kontrol af hover effekt.
 
 5. Gør det muligt at skifte mellem forskellige localStorages. (DONE)
+
+6. En rowContainer tæller, der sættes oppe i højre hjørne, så man kan se mængden af tasks.
