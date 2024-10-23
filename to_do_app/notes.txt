@@ -5,7 +5,7 @@
 Jeg vil gerne lave det muligt at skifte mellem de to forskellige sæt dataer.
 Så man kan skifte mellem to-do og indkøbslisten.
 
-1. Lav rowContainersne i completed containeren sletbare.
+1. Lav rowContainersne i completed containeren sletbare. (DONE)
 
 2. Lave farve switch med "data-theme" på containersne. (DONE)
 
@@ -13,3 +13,5 @@ Så man kan skifte mellem to-do og indkøbslisten.
    hvilken liste man er på.
 
 4. Skift fra brug af pseudo-elements til SVG'er for bedre kontrol af hover effekt.
+
+5. Gør det muligt at skifte mellem forskellige localStorages.
