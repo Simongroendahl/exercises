@@ -1,15 +1,19 @@
 
+// Definerer variabler
 const inputBox = document.getElementById("input_box");
 const quantityBox = document.getElementById("input_quantity");
 const listContainer = document.getElementById("list_container");
 const completedListContainer = document.getElementById("completed_list_container");
 const addButton = document.getElementById("addButton");
+const listTitle = document.getElementById("listTitle");
 
+//Opsætning af eventlisteners
 addButton.addEventListener("click", addTask);
 inputBox.addEventListener("click", expandOptions);
 
 function expandOptions() {
     quantityBox.classList.remove("hide");
+    quantityBox.classList.add("slide_left_ani")
 }
 
 function addTask() {
@@ -37,14 +41,21 @@ function addTask() {
         rowContainer.appendChild(li);
         rowContainer.appendChild(rowDivider);
         rowContainer.setAttribute("data-checked", "false");
+        rowContainer.classList.add("added_to_list");
 
         listContainer.appendChild(rowContainer);
+
+        //Fjerner animationen efter 1 sekund, så den ved reload af browser ikke starter på ny.
+        setTimeout(() => {
+            rowContainer.classList.remove("added_to_list");
+            gemData();
+        }, "1000");
+
         gemData();
     }
     inputBox.value = "";
     quantityBox.value = "";
     quantityBox.classList.add("hide");
-
 }
 
 listContainer.addEventListener("blur", function(event) {
@@ -150,10 +161,12 @@ window.addEventListener("load", defaultMode);
 function farveUpdater(farve) {
     if (farve === "yellow") {
         asideMenu.setAttribute("data-theme", "yellow-theme");
-        contentBg.setAttribute("data-theme", "yellow-theme")
+        contentBg.setAttribute("data-theme", "yellow-theme");
+        listTitle.innerHTML = "Grocery List";
     } else if (farve === "purple") {
         asideMenu.setAttribute("data-theme", "purple-theme");
         contentBg.setAttribute("data-theme", "purple-theme");
+        listTitle.innerHTML = "To Do List";
 };}
 
 toDoButton.addEventListener("click", (nyFarve) => {
