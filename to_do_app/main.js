@@ -5,6 +5,7 @@ const listContainer = document.getElementById("list_container");
 const completedListContainer = document.getElementById("completed_list_container");
 const addButton = document.getElementById("addButton");
 const listTitle = document.getElementById("listTitle");
+const taskCount = document.getElementById("taskDisplayCount");
 
 const asideMenu = document.getElementById("asideBar");
 const contentBg = document.getElementById("contentContainer");
@@ -20,6 +21,11 @@ toDoButton.addEventListener("click", () => listSwitcher('purple'));
 function expandOptions() {
     quantityBox.classList.remove("hide");
     quantityBox.classList.add("slide_left_ani");
+}
+
+function taskCountUpdater() {
+    const taskCountDisplay = listContainer.getElementsByClassName("rowContainer").length;
+    taskCount.innerHTML = taskCountDisplay;
 }
 
 function addTask() {
@@ -49,6 +55,7 @@ function addTask() {
         rowContainer.classList.add("rowContainer");
 
         listContainer.appendChild(rowContainer);
+        taskCountUpdater();
 
         setTimeout(() => {
             rowContainer.classList.remove("added_to_list");
@@ -71,15 +78,20 @@ listContainer.addEventListener("click", function (event) {
                 event.target.classList.remove("checked");
                 rowContainer.setAttribute("data-checked", "false");
                 listContainer.appendChild(rowContainer);
+                taskCountUpdater();
             } else {
                 event.target.classList.add("checked");
                 rowContainer.setAttribute("data-checked", "true");
                 completedListContainer.appendChild(rowContainer);
+                taskCountUpdater();
             }
             gemData(listContainer.getAttribute("data-filter"));
+            taskCountUpdater();
+
         }
     } else if (event.target.tagName === "SPAN") {
         event.target.parentElement.parentElement.remove();
+        taskCountUpdater();
         gemData(listContainer.getAttribute("data-filter"));
     }
 });
@@ -92,10 +104,13 @@ completedListContainer.addEventListener("click", function (event) {
             rowContainer.setAttribute("data-checked", "false");
             listContainer.appendChild(rowContainer);
             gemData(listContainer.getAttribute("data-filter"));
+            taskCountUpdater();
         }
     } else if (event.target.tagName === "SPAN") {
         event.target.parentElement.parentElement.remove();
+        taskCountUpdater();
         gemData(listContainer.getAttribute("data-filter"));
+        taskCountUpdater();
     }
 });
 
@@ -172,6 +187,7 @@ function farveUpdater(farve) {
 window.addEventListener("load", () => {
     defaultMode();
     visData(listContainer.getAttribute("data-filter"));
+    taskCountUpdater();
 });
 
 
@@ -193,5 +209,4 @@ function defaultMode() {
     contentBg.setAttribute("data-theme", "yellow-theme");
     listContainer.setAttribute("data-filter", "grocery-list");
     completedListContainer.setAttribute("data-filter", "grocery-list-complete");
-
 }

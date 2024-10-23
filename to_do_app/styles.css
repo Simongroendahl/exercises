@@ -336,7 +336,7 @@ ul li.checked {
     padding: 2rem 0;
     gap: .5rem;
 
-    & h1 {
+    & h1, div {
         font-size: var(--step-4);
     }
 
@@ -345,9 +345,14 @@ ul li.checked {
     }
 }
 
-.top_wrapper div {
+.header_date_time {
     display: flex;
     gap: 1rem;
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
 }
 
 aside {
