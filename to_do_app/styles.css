@@ -336,13 +336,18 @@ ul li.checked {
     padding: 2rem 0;
     gap: .5rem;
 
-    & h1, div {
+    & h1 {
         font-size: var(--step-4);
     }
 
     & p {
         font-size: var(--step-1);
     }
+}
+
+#taskDisplayCount {
+    font-size: var(--step-4);
+    font-weight: bold;
 }
 
 .header_date_time {
