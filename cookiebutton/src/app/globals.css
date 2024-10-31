@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--background);
+  background: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  margin: auto auto;
+  max-width: 1000px;
+  height: 1000px;
+  position: relative;
+}
+
+p {
+  font-weight: 600;
+}
+
+.cookie-popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: var(--background);
+  color: var(--foreground);
+  width: fit-content;
+  max-width: 250px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.cookie-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cookie-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cookieButton {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: .5rem;
+  border-radius: .5rem;
+}
